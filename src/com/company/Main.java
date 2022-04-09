@@ -1,16 +1,18 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Task_46();
-        Task_71();
-        Task_96();
-        Task_121();
-        Task_146();
+        //Task_46();
+        //Task_71();
+        //Task_96();
+        //Task_121();
+        //Task_146();
     }
+
     /**
      * Найти:
      * а) сумму квадратов всех целых чисел от 10 до 50;
@@ -40,21 +42,20 @@ public class Main {
         int sum_3 = 0;
         System.out.println("Введите до какого числа расcчитывать сумму квадратов от -10(ваше число должно быть ≥ –10):");
         int b = scanner.nextInt();
-        if(b>=-10){
-            for (int i=-10; i <= b; i++) {
+        if (b >= -10) {
+            for (int i = -10; i <= b; i++) {
                 sum_3 += i * i;
             }
             System.out.println("в)" + sum_3);
-        }
-        else System.out.println("ваше число должно быть≥ –10!!!");
+        } else System.out.println("ваше число должно быть≥ –10!!!");
         //г)----------------------------------------------------------
-        int sum_4=0;
+        int sum_4 = 0;
         System.out.println("Введите от какого числа расcчитывать сумму квадратов:");
         int x = scanner.nextInt();
         System.out.println("Введите до какого числа расcчитывать сумму квадратов :");
         int y = scanner.nextInt();
-        for (;x <= y;x++){
-            sum_4 +=x*x;
+        for (; x <= y; x++) {
+            sum_4 += x * x;
         }
         System.out.println("г)" + sum_4);
     }
@@ -64,77 +65,95 @@ public class Main {
      * Внутренний диаметр внутреннего шара равен 10 см. Считать, что шары вкладываются друг в друга без зазоров.
      */
     private static void Task_71() {
-        float volume=0;
-        float radius=5;
-                for(int i=0;i<=12;i++){
-                    volume += (4*Math.PI*Math.pow(i*0.5+radius,3))/3;
-                }
-                System.out.println("Объем равен="+volume/1000+"(л)");//Мы нашли см^3 и перевели в литры
+        float volume = 0;
+        float radius = 5;
+        for (int i = 0; i < 12; i++) {
+            volume += (4 * Math.PI * Math.pow(i * 0.5 + radius, 3)) / 3;
+        }
+        System.out.println("Объем равен=" + volume / 1000 + "(л)");//Мы нашли см^3 и перевели в литры
 
     }
-    /**Вводятся известные оценки двух учеников по четырём предметам.
+
+    /**
+     * Вводятся известные оценки двух учеников по четырём предметам.
      * Определить, какой ученик лучше учится.
      */
     private static void Task_96() {
         System.out.println("Введите оценки первого ученика:");
         Scanner scanner = new Scanner(System.in);
-        int a1 = scanner.nextInt();
-        int a2 = scanner.nextInt();
-        int a3 = scanner.nextInt();
-        int a4 = scanner.nextInt();
+        int sum_mark = 0;
+        for (int mark = 0; mark < 4; mark++) {
+            sum_mark += scanner.nextInt();
+        }
         System.out.println("Введите оценки второго ученика:");
-        int b1 = scanner.nextInt();
-        int b2 = scanner.nextInt();
-        int b3 = scanner.nextInt();
-        int b4 = scanner.nextInt();
-        float average_mark_1=(float)(a1+a2+a3+a4)/4;
-        float average_mark_2=(float)(b1+b2+b3+b4)/4;
-        if(average_mark_1>average_mark_2){
+        int sum_mark2 = 0;
+        for (int mark = 0; mark < 4; mark++) {
+            sum_mark2 += scanner.nextInt();
+        }
+        float average_mark_1 = (float) sum_mark / 4;
+        float average_mark_2 = (float) sum_mark2 / 4;
+        System.out.println("Первого" + average_mark_1);
+        System.out.println("Второго" + average_mark_2);
+        if (average_mark_1 > average_mark_2) {
             System.out.println("Первый ученик учится лучше второго");
-        }
-        else if(average_mark_1<average_mark_2){
+        } else if (average_mark_1 < average_mark_2) {
             System.out.println("Второй ученик учится лучше первого");
-        }
-        else{
+        } else {
             System.out.println("Первый и второй ученик учится на равне друг с другом");
-        }
-    }/**
-     Составить программу, которая запрашивает пароль (например, четырёхзначное число) до тех пор,
-     пока он не будет введён правильно.
-     */
-    private static void Task_121() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите паль из 4 цифр:");
-        int pasword = 0;
-        while(scanner.hasNextInt()){
-            pasword = scanner.nextInt();
-            String s = Integer.toString(pasword);
-            if(s.length() == 4){
-                pasword = Integer.valueOf(s);
-                System.out.println("Ваш пароль: " + pasword);
-                break;
-            }else{
-                System.out.println("Пароль должнет состоять из 4 цифр!\nПопробуйте снова:");
-
         }
     }
 
-}/**Христиан Гольдбах выдвинул гипотезу о том, что любое чётное число, большее 2, представимо в виде суммы двух простых чисел.
-     Проверьте эту гипотезу Гольдбаха для всех чётных чисел, не превышающих число 50.
+    /**
+     * Составить программу, которая запрашивает пароль (например, четырёхзначное число) до тех пор, пока он не будет введён правильно.
+     */
+    private static void Task_121() {
+        System.out.println("Введите пароль состоящий из 4 цифр: ");
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextInt()) {
+            String password = scanner.next();
+            String[] num = password.split("");
+            if (num.length == 4) {
+                System.out.println("Ваш пароль: " + password);
+                break;
+            } else {
+                System.out.println("Пароль должнет состоять из 4 цифр!\nПопробуйте снова:");
+            }
+        }
+    }
+    /**
+     * Христиан Гольдбах выдвинул гипотезу о том, что любое чётное число, большее 2, представимо в виде суммы двух простых чисел.
+     * Проверьте эту гипотезу Гольдбаха для всех чётных чисел, не превышающих число 50.
      */
     private static void Task_146() {
-        int[] arr= new int[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
-
-        for(int i=4;i<=50;i+=2) {
-            for (int j = 0; j < arr.length; j++) {
-                for (int k = 0; k < arr.length; k++) {
-                    if (i == (arr[j] + arr[k])) {
-                        System.out.println(i + "=" + arr[j] + "+" + arr[k] + ";");
+        final int NUMBER = 50;
+        int size = 0;
+        int[] arr1 = new int[NUMBER];
+        for (int i = 1, j = 0; i < NUMBER; i++) {
+            if (i <= 10) {
+                if (i == 1 || i == 2 || i == 3 || i == 5 || i == 7) {
+                    arr1[j] = i;
+                    j++;
+                    size++;
+                }
+            } else {
+                if (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0) {
+                    arr1[j] = i;
+                    j++;
+                    size++;
+                }
+            }
+        }
+        arr1 = Arrays.copyOf(arr1, size);
+        // System.out.println(Arrays.toString(arr1));
+        for (int i = 4; i <= NUMBER; i += 2) {
+            for (int j = 0; j < arr1.length; j++) {
+                for (int k = 0; k < arr1.length; k++) {
+                    if (i == (arr1[j] + arr1[k])) {
+                        System.out.println(i + "=" + arr1[j] + "+" + arr1[k] + ";");
                     }
                 }
             }
         }
     }
 }
-
 
